@@ -40,9 +40,9 @@ app.post('/api/shorten', jsonParser, async (req, res) => {
 	});
 });
 
-debug(`Attempting to listen on ${process.env.httpPort}...`)
-app.listen(process.env.httpPort, () => {
-	info(`Listening on ${process.env.httpPort}.`);
+debug(`Attempting to listen on ${process.env.port}...`)
+app.listen(process.env.port, () => {
+	info(`Listening on ${process.env.port}.`);
 });
 
 async function shorten(link) {
