@@ -1,3 +1,3 @@
 # S.H.O.R.T.
 
-Node.JS based URL shortener.
+S.H.O.R.T. is a simple, NodeJS based url shortener.
