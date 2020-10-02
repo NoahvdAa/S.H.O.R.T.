@@ -21,6 +21,21 @@ app.get('/:id', async (req, res)=>{
 		res.status(404).send('404 Not Found');
 		return;
 	}
+	
+	//Update hit count by 1 everytime the someone hits the shortened link
+	var hitProp = `hit-${req.params.id}`
+	var hitCount = await storage.get(hitProp)
+	//Check if the hit prop exist for the link(as the older existing links wont have the hit prop)
+	if(hitCount === undefined){
+		//Edge Case: For the older existing links create hit prop counter
+		await storage.set(hitProp, 1);
+	} else {
+		hitCount++;
+		await storage.set(hitProp, hitCount);
+	}
+
+	debug(`This link has been hit: ${hitCount} times.`)
+
 	res.redirect(r);
 });
 
@@ -51,6 +66,11 @@ async function shorten(link) {
 	alreadyExisting = await storage.get(link);
 	if (alreadyExisting === undefined) {
 		var short = await generateId();
+		
+		//Creating an initial hit counter for the link
+		var hitProp = `hit-${short}`
+		await storage.set(hitProp, 0);
+
 		// Store both ways, so we can quickly check if the link has been shortened already, without having to loop through all existing links.
 		await storage.set(short, link);
 		await storage.set(link, short);
