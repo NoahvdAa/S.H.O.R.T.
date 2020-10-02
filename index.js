@@ -51,6 +51,7 @@ async function shorten(link) {
 	alreadyExisting = await storage.get(link);
 	if (alreadyExisting === undefined) {
 		var short = await generateId();
+		// Store both ways, so we can quickly check if the link has been shortened already, without having to loop through all existing links.
 		await storage.set(short, link);
 		await storage.set(link, short);
 		alreadyExisting = short;
@@ -70,13 +71,6 @@ async function generateId() {
 		exists = await storage.get(attempt) !== undefined;
 	}
 	return attempt;
-}
-
-function htmlEscape(text) {
-	return text.replace(/&/g, '&amp;').
-		replace(/</g, '&lt;').  // it's not neccessary to escape >
-		replace(/"/g, '&quot;').
-		replace(/'/g, '&#039;');
 }
 
 function info(message) {
