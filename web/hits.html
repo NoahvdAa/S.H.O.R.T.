@@ -22,22 +22,14 @@
 		<img src="/logo.png">
 		<div id="step1">
 			<div class="uk-margin">
-				<input class="uk-input uk-form-width-medium uk-width-12 uk-form-large" type="url" id="link" name="link" placeholder="Long link">
-			</div>
+				<input class="uk-input uk-form-width-medium uk-width-12 uk-form-large" type="text" id="id" name="id" placeholder="Link ID">
+            </div>
+            <strong class="uk-margin" id="short"></strong>
 			<div>
-				<button onclick="shorten();" class="uk-button uk-button-primary uk-width-12">Shorten</button>
+				<button onclick="checkHits();" class="uk-button uk-button-primary uk-width-12">Check Hits</button>
 			</div>
-		</div>
-		<div id="step2" style="display: none;">
-			<br>
-			<span class="uk-position-bottom-center uk-position-small" uk-spinner="ratio: 1"></span>
-		</div>
-		<div id="step3" style="display: none;">
-			<h4>Your short link is:</h4>
-			<h3 class="uk-margin" id="short"></h3>
-			<button onclick="again();" class="uk-button uk-button-primary uk-width-12">Shorten another link</button>
-		</div>
-		<a href="./hits.html" class="uk-button uk-button-link uk-width-12">Check Link Hits</a>
+        </div>
+        <a href="./index.html" class="uk-button uk-button-link uk-width-12">Shorten Link</a>
 	</div>
 </body>
 
