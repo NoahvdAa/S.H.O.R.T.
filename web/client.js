@@ -31,6 +31,24 @@ function shorten() {
 	});
 }
 
+function checkHits() {
+	document.getElementById("short").innerText = "";
+	document.getElementById("id").classList.remove("uk-form-danger");
+	var linkId = document.getElementById("id").value;
+
+	fetch("/api/hits/" + linkId, {
+		method: "GET"
+	}).then(async function (response) {
+		var data = await response.json();
+		// Trigger the error code below.
+		if(data.error) throw new Error();
+		document.getElementById("short").innerText = "Your link has been hit " + data.hits + " times.";
+	}).catch(function (e) {
+		document.getElementById("id").classList.add("uk-form-danger");
+		alert("Link ID does not exist. Please try again.");
+	});
+}
+
 function again(){
 	hide("step3");
 		show("step1");
