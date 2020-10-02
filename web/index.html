@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>S.H.O.R.T.</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- UIKit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/css/uikit.min.css" />
+
+	<!-- UIKit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit-icons.min.js"></script>
+
+	<!-- Client JS -->
+	<script src="/client.js"></script>
+</head>
+
+<body>
+	<div class="uk-position-center uk-tile-muted uk-padding-large">
+		<img src="/logo.png">
+		<div id="step1">
+			<div class="uk-margin">
+				<input class="uk-input uk-form-width-medium uk-width-12 uk-form-large" type="url" id="link" name="link" placeholder="Long link">
+			</div>
+			<div>
+				<button onclick="shorten();" class="uk-button uk-button-primary uk-width-12">Shorten</button>
+			</div>
+		</div>
+		<div id="step2" style="display: none;">
+			<br>
+			<span class="uk-position-bottom-center uk-position-small" uk-spinner="ratio: 1"></span>
+		</div>
+		<div id="step3" style="display: none;">
+			<h4>Your short link is:</h4>
+			<h3 class="uk-margin" id="short"></h3>
+			<button onclick="again();" class="uk-button uk-button-primary uk-width-12">Shorten another link</button>
+		</div>
+	</div>
+</body>
+
+</html>
