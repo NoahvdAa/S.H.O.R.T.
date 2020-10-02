@@ -55,6 +55,20 @@ app.post('/api/shorten', jsonParser, async (req, res) => {
 	});
 });
 
+//Endpoint to get the hit counter for the link
+app.get('/api/hits/:id', async (req, res) => {
+	var hitProp = `hit-${req.params.id}`
+	var shortLink = await storage.get(req.params.id);
+	var hitCount = await storage.get(hitProp);
+	if(shortLink === undefined){
+		res.status(404).send('404 Not Found')
+	} else if(hitProp === undefined){
+		res.status(422).send('HitCount Not Found, hit the shortened link to initialize hitcount.')
+	} else {
+		res.status(200).send({hits: hitCount})
+	}
+})
+
 debug(`Attempting to listen on ${process.env.PORT}...`)
 app.listen(process.env.PORT, () => {
 	info(`Listening on ${process.env.PORT}.`);
